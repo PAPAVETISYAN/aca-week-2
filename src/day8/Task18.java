@@ -12,7 +12,7 @@ public class Task18 {
         {
             array[i] = input.nextInt();
         }
-        anun:
+       /* anun:
         for (int i = 0; i < n - 1; ++i){
             int k = 1;
             for(int j = i + 1; j < n; ++j){
@@ -27,5 +27,8 @@ public class Task18 {
                 break anun;
             }
         }
+        */
+        // or
+        System.out.println(array[n / 2]);
     }
 }
