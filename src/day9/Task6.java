@@ -4,7 +4,6 @@ package day9;
 import java.util.Scanner;
 
 public class Task6 {
-    //kisat
     public static void main(String[]args) {
         Scanner input = new Scanner(System.in);
         System.out.print("n=");
@@ -17,25 +16,53 @@ public class Task6 {
                 matrix[i][j] = input.nextInt();
             }
         }
-        int []array = new int[n];
-        int max = 0;
-        int indexMax = 0;
         for (int i = 0; i < n; ++i) {
-            array[i] = 0;
             for (int j = 0; j < m; ++j) {
-                array[i] += matrix[i][j];
-                if(matrix[i][j] > max){
-                    max = matrix[i][j];
-                    indexMax = i;
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        int[] arraySum = new int[n];
+        int maxMatrix = 0;
+        for (int i = 0; i < n; ++i) {
+            int sum = 0;
+            for (int j = 0; j < m; ++j) {
+                sum += matrix[i][j];
+                if (matrix[i][j] > maxMatrix) {
+                    maxMatrix = matrix[i][j];
                 }
             }
-        } int count = 0;
-        for (int i = indexMax; i < n; ++i){
-            for(int j = 0; j < m; ++j){
-                if(matrix[i][j] == max){
-                    ///kisat
+            arraySum[i] = sum;
+        }
+        int[] indexarray = new int[n];
+        int count = 0;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (matrix[i][j] == maxMatrix) {
+                    indexarray[count] = i;
+                    ++count;
                 }
             }
+        }
+        int z = -1;
+        if (count > 1) {
+            int sumMax = arraySum[indexarray[0]];
+            for (int i = 1; i < count; ++i){
+                if (arraySum[indexarray[i]] > sumMax){
+                    z = indexarray[i];
+                }
+            }
+            if(z == -1) {
+                for (int i = 0; i < count; ++i) {
+                    if (arraySum[indexarray[i]] == sumMax) {
+                        z = indexarray[i];
+                        break;
+                    }
+                }
+            }
+            System.out.println(z + " because of " + maxMatrix + ", the best result");
+        } else {
+            System.out.println(indexarray[count - 1] + " because of " + maxMatrix + ", the best result");
         }
     }
 }
