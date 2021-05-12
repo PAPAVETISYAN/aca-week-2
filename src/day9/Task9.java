@@ -10,21 +10,35 @@ public class Task9 {
         int n = input.nextInt();
         int[][] matrix = new int[n][n];
         int l = 0, z = n , s = 0,k = 0;
+        int count = 0;
         while (z >= 2) {
             int i = l, j;
             for (j = s; j < n - l; ++j) {
                 matrix[i][j] = 1;
             }
+            ++count;
+            if(count == n){
+                break;
+            }
             ++l;
             ++s;
             for (i = l; i < n - l; ++i) {
                 matrix[i][n - l] = 1;
+            }++count;
+            if(count == n){
+                break;
             }
             for (j = n - l; j > l - s; --j) {
                 matrix[n - l][j] = 1;
+            }++count;
+            if(count == n){
+                break;
             }
             for (i = n - l - k; i > l ; --i) {
                 matrix[i][j + k] = 1;
+            }++count;
+            if(count == n){
+                break;
             }
             ++k;
             ++l;
